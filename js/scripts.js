@@ -17,7 +17,7 @@ const getStates = function getData(){
             stateElement.append(stateOption);   
         });
         stateSelectLabel.appendChild(stateElement);
-
     });
 }
+
 getStates();
