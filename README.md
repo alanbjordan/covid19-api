@@ -1,2 +1,2 @@
-##`COVID19 Project`
+`COVID19 Project`
 
