@@ -12,11 +12,11 @@ function getStates() {
     });    
         const stateElement = document.createElement('select'); 
         statesList.map(function(states) {
+            
             const stateOption = document.createElement('option');           
             stateOption.value = states.state;
             stateOption.text = states.state;    
             stateElement.append(stateOption); 
-
         });
             stateSelectLabel.appendChild(stateElement);  
     });
@@ -24,20 +24,42 @@ function getStates() {
 getStates();
 
 async function getCases(state) {
+
     const apiUrl = `https://corona.lmao.ninja/states`;  
-    const casesLabel = document.querySelector('#pCases'); 
+    const totalCasesLabel = document.querySelector('#totalCases'); 
+    const todaysCasesLabel = document.querySelector('#todaysCases'); 
+    const totalDeathsLabel = document.querySelector('#totalDeaths'); 
+    const todaysDeathsLabel = document.querySelector('#todaysDeaths'); 
+    const currentActiveLabel = document.querySelector('#currentActive'); 
     await get(apiUrl).then(function(response) {
-        const casesArray = [];
+
+        const totalCasesArray = [];
+        const todaysCasesArray = [];     
+        const totalDeathsArray = [];
+        const todaysDeathsArray = [];  
+        const currentActiveArray = [];   
         const statesArray = [];
-        const deathsArray = [];
+
         response.forEach(element => {
-            casesArray.push(element.cases);
+            totalCasesArray.push(element.cases);
+            todaysCasesArray.push(element.todayCases);
+            totalDeathsArray.push(element.deaths);    
+            todaysDeathsArray.push(element.todayDeaths);
+            currentActiveArray.push(element.active);
             statesArray.push(element.state);
-            deathsArray.push(element.deaths);
         });
+
         const stateIndex = statesArray.indexOf(state);
-        const insert = (casesArray[stateIndex]); 
-        casesLabel.innerHTML = insert;
+        const insert1 = (totalCasesArray[stateIndex]); 
+        const insert2 = (todaysCasesArray[stateIndex]); 
+        const insert3 = (totalDeathsArray[stateIndex]); 
+        const insert4 = (todaysDeathsArray[stateIndex]); 
+        const insert5 = (currentActiveArray[stateIndex]); 
+        totalCasesLabel.innerHTML = insert1;
+        todaysCasesLabel .innerHTML = insert2;
+        totalDeathsLabel.innerHTML = insert3;
+        todaysDeathsLabel.innerHTML = insert4;
+        currentActiveLabel.innerHTML = insert5;
     });
 }
 
