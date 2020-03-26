@@ -63,4 +63,3 @@ submitFormButton.addEventListener('click', function(e) {
     state = stateInput.value;
     getCases(state);
 });
-
