@@ -23,7 +23,7 @@ function getStates() {
 }
 getStates();
 
-async function getCases(push) {
+async function getCases(state) {
     const apiUrl = `https://corona.lmao.ninja/states`;  
     const casesLabel = document.querySelector('#dead'); 
     await get(apiUrl).then(function(response) {
@@ -33,7 +33,7 @@ async function getCases(push) {
             casesArray.push(element.cases);
             statesArray.push(element.state);
         });
-        const stateIndex = statesArray.indexOf(push);
+        const stateIndex = statesArray.indexOf(state);
         const insert = (casesArray[stateIndex]); 
         casesLabel.innerHTML = insert;
     });
